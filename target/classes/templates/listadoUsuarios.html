@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4 overflow-scroll">
+
+		<div class="row mb-3">
+			<div class="col text-center">
+				<h3 th:text="${titulo}">
+					<h3>
+			</div>
+		</div>
+
+		<div class="row justify-content-end">
+			<div class="col-2">
+				<a th:href="@{/crearUsuario}" class="btn btn-sm btn-success"> <i class="bi bi-plus-circle"></i> Crear</a>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-10">
+				<div class="card mt-4">
+
+					<div class="card-body">
+
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Nombre</th>
+									<th>Apellido</th>
+									<th>Rut</th>
+									<th>Email</th>
+									<th>Estado</th>
+									<th class="text-center">Editar</th>
+									<th class="text-center">Eliminar</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="u: ${listadoUsuarios}">
+									<td th:text="${u.id}"></td>
+									<td th:text="${u.nombre}"></td>
+									<td th:text="${u.apellido}"></td>
+									<td th:text="${u.rut}"></td>
+									<td th:text="${u.email}"></td>
+									
+									<td th:if="${u.estado} == 0">Pendiente</td>
+									<td th:if="${u.estado} == 1">Activo</td>
+									<td th:if="${u.estado} == 2">Deshabilitado</td>
+									
+									<td class="text-center">
+										<a id="btnEditarUsuario" th:href="@{/editarUsuario/} + ${u.id}"><i class="bi bi-view-list"></i></a>
+									</td>
+									<td class="text-center">
+										<button th:onclick="eliminarUsuario([[${u.id}]]);" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3"></i>
+										</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:src="@{/js/usuario.js}"></script>
+</body>
+
+</html>

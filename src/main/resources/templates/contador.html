@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4 overflow-scroll">
+
+		<div class="row mb-3">
+			<div class="col text-center">
+				<h3 th:text="${titulo}">
+					<h3>
+			</div>
+		</div>
+		<br>
+		<form id="idForm" th:action="@{/guardarContador}" th:object="${contador}" method="post">
+			<div class="row g-0 justify-content-center">
+				<!--<div class="form-group row justify-content-center mb-1">
+					<label class="col-sm-2 form-label">Rut</label>
+					<div class="col-sm-3">
+						<input th:field="*{rut}" type="text" class="form-control form-control-sm" th:errorclass="'alert-danger'" />
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('rut')}" th:errors="*{rut}"></small>
+					</div>
+				</div>-->
+				<div class="form-group row justify-content-center mb-1">
+					<label class="col-sm-2 form-label">Nombre</label>
+					<div class="col-sm-3">
+						<input th:field="${contador.nombre}" type="text" class="form-control form-control-sm" th:errorclass="'alert-danger'" />
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+					</div>
+				</div>
+				<div class="form-group row justify-content-center mb-1">
+					<label class="col-sm-2 form-label">Apellido</label>
+					<div class="col-sm-3">
+						<input th:field="${contador.apellido}" type="text" class="form-control form-control-sm" th:errorclass="'alert-danger'" />
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
+					</div>
+				</div>
+				<div class="form-group row justify-content-center mb-1">
+					<label class="col-sm-2 form-label">Email</label>
+					<div class="col-sm-3">
+						<input th:field="${contador.email}" type="email" class="form-control form-control-sm" th:errorclass="'alert-danger'" />
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+					</div>
+				</div>
+				<!--<div class="form-group row justify-content-center mb-1">
+					<label class="col-sm-2 form-label">Password</label>
+					<div class="col-sm-3">
+						<input th:field="${contador.password}" type="password" class="form-control form-control-sm" th:errorclass="'alert-danger'" />
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+					</div>
+				</div>-->
+				<div class="form-group row justify-content-center mb-1">
+					<label class="col-sm-2 form-label">Estado</label>
+					<div class="col-sm-3">
+						<select class="form-select form-select-sm" th:field="*{estado}" th:errorclass="'alert-danger'">
+							<option th:each="estado: ${estados.entrySet()}" th:text="${estado.value}" th:value="${estado.key}"></option>
+						</select>
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></small>
+					</div>
+				</div>
+				
+			</div>
+
+			<br>
+
+
+			<div class="form-group row justify-content-center mb-1">
+				<div class="col-sm-4 text-center">
+					<a th:href="@{/listadoContadores}" class="btn btn-sm btn-success col-4"> <i class="bi bi-arrow-return-left"></i> Volver</a>
+					<button class="btn btn-sm btn-primary col-4" type="submit"><span th:text="${btn}"></span></button>
+				</div>
+			</div>
+
+		</form>
+
+	</div>
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+{"properties": [
+  {
+    "name": "url.consulta.cliente",
+    "type": "java.lang.String",
+    "description": "A description for 'url.consulta.cliente'"
+  },
+  {
+    "name": "url.consulta.cliente",
+    "type": "java.lang.String",
+    "description": "A description for 'url.consulta.cliente'"
+  },
+  {
+    "name": "mail.set.from",
+    "type": "java.lang.String",
+    "description": "A description for 'mail.set.from'"
+  },
+  {
+    "name": "mail.set.from",
+    "type": "java.lang.String",
+    "description": "A description for 'mail.set.from'"
+  },
+  {
+    "name": "mail.set.from",
+    "type": "java.lang.String",
+    "description": "A description for 'mail.set.from'"
+  },
+  {
+    "name": "url.consulta.cliente",
+    "type": "java.lang.String",
+    "description": "A description for 'url.consulta.cliente'"
+  },
+  {
+    "name": "url.consulta.cliente",
+    "type": "java.lang.String",
+    "description": "A description for 'url.consulta.cliente'"
+  },
+  {
+    "name": "url.consulta.cliente",
+    "type": "java.lang.String",
+    "description": "A description for 'url.consulta.cliente'"
+  },
+  {
+    "name": "mail.set.from",
+    "type": "java.lang.String",
+    "description": "A description for 'mail.set.from'"
+  }
+]}
