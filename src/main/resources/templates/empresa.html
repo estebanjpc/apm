@@ -4,84 +4,68 @@
 <head th:replace="layout/layout :: head"></head>
 
 <body class="d-flex flex-column min-vh-100">
-
 	<header th:replace="layout/layout :: header"></header>
-
-	<div class="container py-4 overflow-scroll">
-
-		<div class="row mb-3">
+	<div class="container py-4 flex-grow-1">
+		<div class="row mb-4">
 			<div class="col text-center">
-				<h3 th:text="${titulo}">
-					<h3>
+				<h3 class="fw-bold text-primary border-bottom pb-2" th:text="${titulo}"></h3>
 			</div>
 		</div>
-		<br>
-		<form id="idForm" th:action="@{/guardarEmpresa}" th:object="${empresa}" method="post">
-			<div class="row g-0 justify-content-center">
-				<div class="form-group row justify-content-center mb-1">
-					<label class="col-sm-2 form-label">Rut</label>
-					<div class="col-sm-3">
-						<input th:field="*{rut}" type="text" class="form-control form-control-sm" th:errorclass="'alert-danger'" />
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('rut')}" th:errors="*{rut}"></small>
+		<form id="idForm" th:action="@{/guardarEmpresa}" th:object="${empresa}" method="post" class="needs-validation"
+			novalidate>
+			<div class="row justify-content-center">
+				<div class="col-md-8 col-lg-6">
+					<div class="card shadow-sm rounded-3 border-0">
+						<div class="card-body p-4">
+							<!-- Rut -->
+							<div class="mb-3"> <label class="form-label fw-semibold">Rut</label>
+								<div class="input-group"> <span class="input-group-text"><i
+											class="bi bi-credit-card-2-front"></i></span> <input th:field="*{rut}"
+										type="text" class="form-control form-control-sm" th:errorclass="'is-invalid'" />
+									<div class="invalid-feedback" th:if="${#fields.hasErrors('rut')}"
+										th:errors="*{rut}"></div>
+								</div>
+							</div> <!-- Nombre -->
+							<div class="mb-3"> <label class="form-label fw-semibold">Nombre</label>
+								<div class="input-group"> <span class="input-group-text"><i
+											class="bi bi-building"></i></span> <input th:field="*{nombre}" type="text"
+										class="form-control form-control-sm" th:errorclass="'is-invalid'" />
+									<div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}"
+										th:errors="*{nombre}"></div>
+								</div>
+							</div> <!-- Razón Social -->
+							<div class="mb-3"> <label class="form-label fw-semibold">Razón Social</label>
+								<div class="input-group"> <span class="input-group-text"><i
+											class="bi bi-briefcase"></i></span> <input th:field="*{razonSocial}"
+										type="text" class="form-control form-control-sm" th:errorclass="'is-invalid'" />
+									<div class="invalid-feedback" th:if="${#fields.hasErrors('razonSocial')}"
+										th:errors="*{razonSocial}"></div>
+								</div>
+							</div> <!-- Estado -->
+							<div class="mb-3"> <label class="form-label fw-semibold">Estado</label>
+								<div class="input-group"> <span class="input-group-text"><i
+											class="bi bi-toggle-on"></i></span> <select
+										class="form-select form-select-sm" th:field="*{estado}"
+										th:errorclass="'is-invalid'">
+										<option th:each="estado: ${estados.entrySet()}" th:text="${estado.value}"
+											th:value="${estado.key}"></option>
+									</select>
+									<div class="invalid-feedback" th:if="${#fields.hasErrors('estado')}"
+										th:errors="*{estado}"></div>
+								</div>
+							</div> <!-- Botones -->
+							<div class="text-center mt-4"> <a th:href="@{/listadoEmpresas}"
+									class="btn btn-outline-secondary btn-sm me-2"> <i
+										class="bi bi-arrow-return-left"></i> Volver </a> <button
+									class="btn btn-primary btn-sm" type="submit"> <i class="bi bi-save"></i> <span
+										th:text="${btn}"></span> </button> </div>
+						</div>
 					</div>
-				</div>
-				<div class="form-group row justify-content-center mb-1">
-					<label class="col-sm-2 form-label">Nombre</label>
-					<div class="col-sm-3">
-						<input th:field="${empresa.nombre}" type="text" class="form-control form-control-sm" th:errorclass="'alert-danger'" />
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
-					</div>
-				</div>
-				<div class="form-group row justify-content-center mb-1">
-					<label class="col-sm-2 form-label">Razon Social</label>
-					<div class="col-sm-3">
-						<input th:field="${empresa.razonSocial}" type="text" class="form-control form-control-sm" th:errorclass="'alert-danger'" />
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('razonSocial')}" th:errors="*{razonSocial}"></small>
-					</div>
-				</div>
-				<!--<div class="form-group row justify-content-center mb-1">
-					<label class="col-sm-2 form-label">Email</label>
-					<div class="col-sm-3">
-						<input th:field="${empresa.email}" type="email" class="form-control form-control-sm" th:errorclass="'alert-danger'" />
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
-					</div>
-				</div>
-				<div class="form-group row justify-content-center mb-1">
-					<label class="col-sm-2 form-label">Password</label>
-					<div class="col-sm-3">
-						<input th:field="${empresa.password}" type="password" class="form-control form-control-sm" th:errorclass="'alert-danger'" />
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
-					</div>
-				</div>-->
-				<div class="form-group row justify-content-center mb-1">
-					<label class="col-sm-2 form-label">Estado</label>
-					<div class="col-sm-3">
-						<select class="form-select form-select-sm" th:field="*{estado}" th:errorclass="'alert-danger'">
-							<option th:each="estado: ${estados.entrySet()}" th:text="${estado.value}" th:value="${estado.key}"></option>
-						</select>
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></small>
-					</div>
-				</div>
-				
-			</div>
-
-			<br>
-
-
-			<div class="form-group row justify-content-center mb-1">
-				<div class="col-sm-4 text-center">
-					<a th:href="@{/listadoEmpresas}" class="btn btn-sm btn-success col-4"> <i class="bi bi-arrow-return-left"></i> Volver</a>
-					<button class="btn btn-sm btn-primary col-4" type="submit"><span th:text="${btn}"></span></button>
 				</div>
 			</div>
-
 		</form>
-
 	</div>
-
-
 	<footer th:replace="layout/layout :: footer"></footer>
-
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 package com.app.service;
 
 import com.app.entity.Email;
+import com.app.entity.Liquidacion;
 import com.app.entity.Usuario;
 
 public interface IEmailService {
@@ -9,6 +10,6 @@ public interface IEmailService {
 
 	public void creacionUsuario(Email email);
 
-	public void enviarPdfConAdjunto(Usuario usuario, byte[] pdfBytes);
+	public void enviarPdfConAdjunto(Usuario usuario, byte[] pdfBytes, Liquidacion liquidacion);
 
 }

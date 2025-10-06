@@ -128,7 +128,7 @@ public class UsuarioController {
 		status.setComplete();
 		flash.addFlashAttribute("msjLayout", "success;Exito;Se realizo corrextamente el cambio de password");
 
-		return "redirect:/consulta";
+		return "redirect:/login";
 	}
 
 	@Secured("ROLE_CONTADOR")

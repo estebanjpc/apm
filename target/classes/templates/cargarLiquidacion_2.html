@@ -21,7 +21,7 @@
 			<label class="col-sm-2 form-label">Empresa</label>
 			<div class="col-sm-3">
 				<select id="empresaId" name="empresaId" class="form-select form-select-sm" required>
-					<option value="">Seleccione</option>
+					<option value="" th:if="${#lists.size(listadoEmpresas) > 1}">Seleccione</option>
 					<option th:each="emp: ${listadoEmpresas}" th:text="${emp.razonSocial}" th:value="${emp.id}">
 					</option>
 				</select>

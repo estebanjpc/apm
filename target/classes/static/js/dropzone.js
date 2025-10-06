@@ -68,11 +68,20 @@ let myDropzone = new Dropzone("#dropzoneDiv", {
 			// Caso 1: Todos los archivos se subieron correctamente
 			if (exitos.length === resultados.length && exitos.length > 0) {
 				Swal.fire({
-					title: "¡Éxito!",
-					text: `${exitos.length} archivo(s) cargado(s) correctamente.`,
+					title: `<h4 class="fw-bold text-success">
+                				<i class="fas fa-check-circle"></i> ¡Éxito!
+            				</h4>`,
+					html: `<p class="mb-2">${exitos.length} archivo(s) cargado(s) correctamente.</p>`,
 					icon: "success",
-					confirmButtonColor: '#0d6efd'
+					iconColor: "#198754",
+					confirmButtonText: '<i class="fas fa-check"></i> Aceptar',
+					confirmButtonColor: "#198754",
+					background: "#f8f9fa",
+					backdrop: "rgba(0,0,0,0.5)",
+					showClass: { popup: "animate__animated animate__fadeInDown" },
+					hideClass: { popup: "animate__animated animate__fadeOutUp" }
 				});
+
 			} else {
 				// Caso 2: Hay errores o no se procesaron archivos
 				let html = "";

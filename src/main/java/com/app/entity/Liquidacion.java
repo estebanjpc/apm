@@ -32,7 +32,7 @@ public class Liquidacion implements Serializable {
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
     
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_empresa", nullable = false)
     private Empresa empresa;
 

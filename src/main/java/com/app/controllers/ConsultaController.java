@@ -45,7 +45,7 @@ public class ConsultaController {
 						@RequestParam(value = "empresaId", required = false) Long empresaId,
 						HttpServletRequest request) {
 		
-		model.put("titulo", "Consulta Rut");
+		model.put("titulo", "Consulta Liquidación");
 		
 		Usuario usuarioLogin = (Usuario) request.getSession().getAttribute("usuarioLogin");
 		List<Empresa> listadoEmpresas = empresaService.findAllById(usuarioLogin.getId());
@@ -64,12 +64,13 @@ public class ConsultaController {
 		
 		
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogin");
+		Liquidacion liquidacion = liquidacionService.findById(id);
 		PdfLiquidacion liq = pdfLiquidacion.findById(id);
 		byte[] pdfBytes = liq.getFileBlob();
 		
-		Executors.newSingleThreadExecutor().execute(() -> emailService.enviarPdfConAdjunto(usuario, pdfBytes));
+		Executors.newSingleThreadExecutor().execute(() -> emailService.enviarPdfConAdjunto(usuario, pdfBytes,liquidacion));
 		
-	    flash.addFlashAttribute("success", "Se envió la liquidación al correo: " + usuario.getEmail());
+	    flash.addFlashAttribute("msjLayout", "success;Exito!;Se envió la liquidación al correo: " + usuario.getEmail());
 		
 	    return "redirect:/consulta";
 	}
